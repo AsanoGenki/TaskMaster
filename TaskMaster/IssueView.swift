@@ -15,7 +15,7 @@ struct IssueView: View {
         Form {
             Section {
                 VStack(alignment: .leading) {
-                    TextField("タイトル", text: $issue.issueTitle, prompt: Text("タスクのタイトルをここに記入..."))
+                    TextField("タイトル", text: $issue.issueTitle, prompt: Text("タイトル"))
                         .font(.title)
 
                     Text("**更新日:** \(issue.issueModificationDate.formatted(date: .long, time: .shortened))")
