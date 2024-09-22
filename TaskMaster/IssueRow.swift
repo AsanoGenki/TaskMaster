@@ -23,8 +23,8 @@ struct IssueRow: View {
                         .font(.headline)
                         .lineLimit(1)
 
-                    Text("タグなし")
-                        .foregroundStyle(.secondary)
+                    Text(issue.issueTagsList)
+                        .font(.subheadline)
                         .lineLimit(1)
                 }
 
