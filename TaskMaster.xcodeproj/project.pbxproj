@@ -62,7 +62,7 @@
 		4AFD2CB72C9FC3C90005B4F0 /* Main.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Main.xcdatamodel; sourceTree = "<group>"; };
 		4AFD2CB92C9FC5CE0005B4F0 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		4AFD2CBB2C9FC7650005B4F0 /* TaskMaster.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TaskMaster.entitlements; sourceTree = "<group>"; };
-		4AFD2CBC2C9FC76F0005B4F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4AFD2CBC2C9FC76F0005B4F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AFD2CBD2C9FC8810005B4F0 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		4AFD2CBF2C9FC8940005B4F0 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		4AFD2CC12C9FC8E50005B4F0 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
@@ -102,32 +102,16 @@
 		4A69F8652C9FBFF2004B777E /* TaskMaster */ = {
 			isa = PBXGroup;
 			children = (
-				4AFD2CBC2C9FC76F0005B4F0 /* Info.plist */,
+				4A77D21C2CA05BD3002CBDC1 /* Filters */,
+				4A77D21D2CA05BF2002CBDC1 /* Issues */,
+				4A77D21E2CA05C0D002CBDC1 /* Editing */,
+				4A77D21F2CA05C2D002CBDC1 /* Awards */,
+				4A77D2192CA05AF5002CBDC1 /* Extensions */,
+				4A77D21A2CA05B14002CBDC1 /* Configuration */,
 				4A69F8662C9FBFF2004B777E /* TaskMasterApp.swift */,
-				4AFD2CC12C9FC8E50005B4F0 /* Filter.swift */,
 				4AFD2CB92C9FC5CE0005B4F0 /* DataController.swift */,
-				4AFD2CBD2C9FC8810005B4F0 /* SidebarView.swift */,
-				4A77D2122CA04908002CBDC1 /* UserFilterRow.swift */,
-				4A77D2102CA04892002CBDC1 /* SmartFilterRow.swift */,
-				4A77D2082CA045D2002CBDC1 /* SidebarViewToolbar.swift */,
-				4A0206F02CA009710085B66A /* Bundle-Decodable.swift */,
-				4A69F8682C9FBFF2004B777E /* ContentView.swift */,
-				4A77D20C2CA04742002CBDC1 /* ContentViewToolbar.swift */,
-				4A0206EA2C9FE6AF0085B66A /* IssueRow.swift */,
-				4AFD2CBF2C9FC8940005B4F0 /* DetailView.swift */,
-				4A0206EE2C9FE9D30085B66A /* IssueView.swift */,
-				4A77D20E2CA047B0002CBDC1 /* TagsMenuView.swift */,
-				4A77D20A2CA046EA002CBDC1 /* IssueViewToolbar.swift */,
-				4A0206EC2C9FE95C0085B66A /* NoIssueView.swift */,
-				4A0206F62CA00A4C0085B66A /* Award.swift */,
-				4A0206F82CA00AB50085B66A /* AwardsView.swift */,
-				4A0206E42C9FE2DD0085B66A /* Issue-CoreDataHelper.swift */,
-				4A0206E62C9FE3D60085B66A /* Tag-CoreDataHelpers.swift */,
-				4AFD2CB62C9FC3C90005B4F0 /* Main.xcdatamodeld */,
-				4A0206F22CA00A110085B66A /* Awards.json */,
 				4A0206F42CA00A300085B66A /* Colors.xcassets */,
 				4A69F86A2C9FBFF4004B777E /* Assets.xcassets */,
-				4AFD2CBB2C9FC7650005B4F0 /* TaskMaster.entitlements */,
 				4A69F86C2C9FBFF4004B777E /* Preview Content */,
 			);
 			path = TaskMaster;
@@ -139,6 +123,70 @@
 				4A69F86D2C9FBFF4004B777E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4A77D2192CA05AF5002CBDC1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4A0206F02CA009710085B66A /* Bundle-Decodable.swift */,
+				4A0206E42C9FE2DD0085B66A /* Issue-CoreDataHelper.swift */,
+				4A0206E62C9FE3D60085B66A /* Tag-CoreDataHelpers.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4A77D21A2CA05B14002CBDC1 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				4AFD2CBB2C9FC7650005B4F0 /* TaskMaster.entitlements */,
+				4AFD2CBC2C9FC76F0005B4F0 /* Info.plist */,
+				4AFD2CB62C9FC3C90005B4F0 /* Main.xcdatamodeld */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		4A77D21C2CA05BD3002CBDC1 /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				4AFD2CC12C9FC8E50005B4F0 /* Filter.swift */,
+				4AFD2CBD2C9FC8810005B4F0 /* SidebarView.swift */,
+				4A77D2082CA045D2002CBDC1 /* SidebarViewToolbar.swift */,
+				4A77D2102CA04892002CBDC1 /* SmartFilterRow.swift */,
+				4A77D2122CA04908002CBDC1 /* UserFilterRow.swift */,
+			);
+			path = Filters;
+			sourceTree = "<group>";
+		};
+		4A77D21D2CA05BF2002CBDC1 /* Issues */ = {
+			isa = PBXGroup;
+			children = (
+				4A69F8682C9FBFF2004B777E /* ContentView.swift */,
+				4A77D20C2CA04742002CBDC1 /* ContentViewToolbar.swift */,
+				4A0206EA2C9FE6AF0085B66A /* IssueRow.swift */,
+			);
+			path = Issues;
+			sourceTree = "<group>";
+		};
+		4A77D21E2CA05C0D002CBDC1 /* Editing */ = {
+			isa = PBXGroup;
+			children = (
+				4AFD2CBF2C9FC8940005B4F0 /* DetailView.swift */,
+				4A0206EE2C9FE9D30085B66A /* IssueView.swift */,
+				4A77D20A2CA046EA002CBDC1 /* IssueViewToolbar.swift */,
+				4A0206EC2C9FE95C0085B66A /* NoIssueView.swift */,
+				4A77D20E2CA047B0002CBDC1 /* TagsMenuView.swift */,
+			);
+			path = Editing;
+			sourceTree = "<group>";
+		};
+		4A77D21F2CA05C2D002CBDC1 /* Awards */ = {
+			isa = PBXGroup;
+			children = (
+				4A0206F82CA00AB50085B66A /* AwardsView.swift */,
+				4A0206F62CA00A4C0085B66A /* Award.swift */,
+				4A0206F22CA00A110085B66A /* Awards.json */,
+			);
+			path = Awards;
 			sourceTree = "<group>";
 		};
 		8DE5BD1C45EBF83DF54A4665 /* Frameworks */ = {
@@ -516,8 +564,7 @@
 				4AFD2CB72C9FC3C90005B4F0 /* Main.xcdatamodel */,
 			);
 			currentVersion = 4AFD2CB72C9FC3C90005B4F0 /* Main.xcdatamodel */;
-			name = Main.xcdatamodeld;
-			path = /Users/asanogenki/Desktop/SwiftPractice/TaskMaster/TaskMaster/Main.xcdatamodeld;
+			path = Main.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

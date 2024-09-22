@@ -15,8 +15,10 @@ enum SortType: String {
 enum Status {
     case all, open, closed
 }
-
+/// 保存の処理、フェッチリクエスト、称号の追跡、サンプルデータの処理など、
+/// Core Dataスタックの管理を担当するシングルトン。
 class DataController: ObservableObject {
+    /// すべてのデータを保存するために使用される唯一のCloudKitコンテナ。
     let container: NSPersistentCloudKitContainer
     @Published var selectedFilter: Filter? = Filter.all
     @Published var selectedIssue: Issue?
@@ -47,15 +49,21 @@ class DataController: ObservableObject {
 
         return (try? container.viewContext.fetch(request).sorted()) ?? []
     }
+    /// DataControllerをメモリ内 (テストやプレビューなどの一時的な使用)、または永続的なストレージ (通常のアプリ実行での使用) で初期化する。
+    /// - Parameter inMemory: このデータを一時メモリに保存するかどうか。
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "Main")
 
+        // テストとプレビューの目的で、/dev/nullに書き込むことで一時的なメモリ内データベースを作成する。
+        // アプリの実行が終了するとデータが破棄される。
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(filePath: "/dev/null")
         }
 
         container.viewContext.automaticallyMergesChangesFromParent = true
         container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+        
+        // すべての変更について iCloudを監視し、リモートの変更が発生したときにローカルUIが確実に同期されるようにする。
         container.persistentStoreDescriptions.first?.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
         NotificationCenter.default.addObserver(forName: .NSPersistentStoreRemoteChange, object: container.persistentStoreCoordinator, queue: .main, using: remoteStoreChanged)
         container.loadPersistentStores { _, error in
@@ -112,6 +120,9 @@ class DataController: ObservableObject {
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         batchDeleteRequest.resultType = .resultTypeObjectIDs
 
+        // ⚠️バッチ削除を実行するときは、必ず結果を読み戻して、
+        // その結果からのすべての変更をライブビューコンテキストにマージして、
+        // 2つが同期された状態を保つ必要がある。
         if let delete = try? container.viewContext.execute(batchDeleteRequest) as? NSBatchDeleteResult {
             let changes = [NSDeletedObjectsKey: delete.result as? [NSManagedObjectID] ?? []]
             NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [container.viewContext])
@@ -135,6 +146,9 @@ class DataController: ObservableObject {
 
         return difference.sorted()
     }
+    /// タグ、タイトルと説明文、検索値、優先度、ステータスに基づいて、
+    /// ユーザーのタスクをフィルターするさまざまな要素を使用してフェッチ リクエストを実行。
+    /// - Returns: 一致するすべてのタスクの配列。
     func issuesForSelectedFilter() -> [Issue] {
         let filter = selectedFilter ?? .all
         var predicates = [NSPredicate]()
@@ -190,6 +204,9 @@ class DataController: ObservableObject {
         issue.title = "新しいタスク"
         issue.creationDate = .now
         issue.priority = 1
+        
+        // 現在、ユーザーが作成したタグを参照している場合は、
+        // この新しいタスクをタグに追加する。そうしないと、タスクのリストに表示されないため。
         if let tag = selectedFilter?.tag {
             issue.addToTags(tag)
         }
@@ -202,26 +219,22 @@ class DataController: ObservableObject {
     func hasEarned(award: Award) -> Bool {
         switch award.criterion {
         case "issues":
-            // returns true if they added a certain number of issues
             let fetchRequest = Issue.fetchRequest()
             let awardCount = count(for: fetchRequest)
             return awardCount >= award.value
 
         case "closed":
-            // returns true if they closed a certain number of issues
             let fetchRequest = Issue.fetchRequest()
             fetchRequest.predicate = NSPredicate(format: "completed = true")
             let awardCount = count(for: fetchRequest)
             return awardCount >= award.value
 
         case "tags":
-            // return true if they created a certain number of tags
             let fetchRequest = Tag.fetchRequest()
             let awardCount = count(for: fetchRequest)
             return awardCount >= award.value
 
         default:
-            // an unknown award criterion; this should never be allowed
             // fatalError("Unknown award criterion: \(award.criterion)")
             return false
         }
