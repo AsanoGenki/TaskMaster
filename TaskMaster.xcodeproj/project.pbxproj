@@ -11,6 +11,8 @@
 		4A69F8692C9FBFF2004B777E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A69F8682C9FBFF2004B777E /* ContentView.swift */; };
 		4A69F86B2C9FBFF4004B777E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A69F86A2C9FBFF4004B777E /* Assets.xcassets */; };
 		4A69F86E2C9FBFF4004B777E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A69F86D2C9FBFF4004B777E /* Preview Assets.xcassets */; };
+		4AFD2CB82C9FC3C90005B4F0 /* Main.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4AFD2CB62C9FC3C90005B4F0 /* Main.xcdatamodeld */; };
+		4AFD2CBA2C9FC5CE0005B4F0 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFD2CB92C9FC5CE0005B4F0 /* DataController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,10 @@
 		4A69F8682C9FBFF2004B777E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4A69F86A2C9FBFF4004B777E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4A69F86D2C9FBFF4004B777E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4AFD2CB72C9FC3C90005B4F0 /* Main.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Main.xcdatamodel; sourceTree = "<group>"; };
+		4AFD2CB92C9FC5CE0005B4F0 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		4AFD2CBB2C9FC7650005B4F0 /* TaskMaster.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TaskMaster.entitlements; sourceTree = "<group>"; };
+		4AFD2CBC2C9FC76F0005B4F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,9 +57,13 @@
 		4A69F8652C9FBFF2004B777E /* TaskMaster */ = {
 			isa = PBXGroup;
 			children = (
+				4AFD2CBC2C9FC76F0005B4F0 /* Info.plist */,
 				4A69F8662C9FBFF2004B777E /* TaskMasterApp.swift */,
+				4AFD2CB92C9FC5CE0005B4F0 /* DataController.swift */,
 				4A69F8682C9FBFF2004B777E /* ContentView.swift */,
+				4AFD2CB62C9FC3C90005B4F0 /* Main.xcdatamodeld */,
 				4A69F86A2C9FBFF4004B777E /* Assets.xcassets */,
+				4AFD2CBB2C9FC7650005B4F0 /* TaskMaster.entitlements */,
 				4A69F86C2C9FBFF4004B777E /* Preview Content */,
 			);
 			path = TaskMaster;
@@ -137,6 +147,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AFD2CB82C9FC3C90005B4F0 /* Main.xcdatamodeld in Sources */,
+				4AFD2CBA2C9FC5CE0005B4F0 /* DataController.swift in Sources */,
 				4A69F8692C9FBFF2004B777E /* ContentView.swift in Sources */,
 				4A69F8672C9FBFF2004B777E /* TaskMasterApp.swift in Sources */,
 			);
@@ -269,12 +281,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TaskMaster/TaskMaster.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TaskMaster/Preview Content\"";
 				DEVELOPMENT_TEAM = 4J8L2WD7VW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TaskMaster/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -298,12 +312,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TaskMaster/TaskMaster.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TaskMaster/Preview Content\"";
 				DEVELOPMENT_TEAM = 4J8L2WD7VW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TaskMaster/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -344,6 +360,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4AFD2CB62C9FC3C90005B4F0 /* Main.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4AFD2CB72C9FC3C90005B4F0 /* Main.xcdatamodel */,
+			);
+			currentVersion = 4AFD2CB72C9FC3C90005B4F0 /* Main.xcdatamodel */;
+			name = Main.xcdatamodeld;
+			path = /Users/asanogenki/Desktop/SwiftPractice/TaskMaster/TaskMaster/Main.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4A69F85B2C9FBFF2004B777E /* Project object */;
 }
