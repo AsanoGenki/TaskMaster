@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    
+struct ContentView: View {    
     @EnvironmentObject var dataController: DataController
     var issues: [Issue] {
         let filter = dataController.selectedFilter ?? .all
@@ -26,7 +25,7 @@ struct ContentView: View {
     }
     
     var body: some View {
-        List {
+        List(selection: $dataController.selectedIssue) {
             ForEach(issues) { issue in
                 IssueRow(issue: issue)
             }

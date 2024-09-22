@@ -10,6 +10,8 @@ import SwiftUI
 @main
 struct TaskMasterApp: App {
     @StateObject var dataController = DataController()
+    @Environment(\.scenePhase) var scenePhase
+    
     var body: some Scene {
         WindowGroup {
             NavigationSplitView {
@@ -19,8 +21,13 @@ struct TaskMasterApp: App {
             } detail: {
                 DetailView()
             }
-                .environment(\.managedObjectContext, dataController.container.viewContext)
-                .environmentObject(dataController)
+            .environment(\.managedObjectContext, dataController.container.viewContext)
+            .environmentObject(dataController)
+            .onChange(of: scenePhase) { phase in
+                if phase != .active {
+                    dataController.save()
+                }
+            }
         }
     }
 }

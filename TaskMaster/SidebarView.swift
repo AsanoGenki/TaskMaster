@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-struct SidebarView: View {
-    
+struct SidebarView: View {    
     @EnvironmentObject var dataController: DataController
     let smartFilters: [Filter] = [.all, .recent]
     

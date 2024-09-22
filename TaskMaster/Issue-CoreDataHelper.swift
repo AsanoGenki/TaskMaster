@@ -31,6 +31,24 @@ extension Issue {
         return result.sorted()
     }
     
+    var issueTagsList: String {
+        guard let tags else { return "タグなし" }
+
+        if tags.count == 0 {
+            return "タグなし"
+        } else {
+            return issueTags.map(\.tagName).joined(separator: ", ")
+        }
+    }
+    
+    var issueStatus: String {
+        if completed {
+            return "完了済み"
+        } else {
+            return "未達成"
+        }
+    }
+    
     static var example: Issue {
         let controller = DataController(inMemory: true)
         let viewContext = controller.container.viewContext
