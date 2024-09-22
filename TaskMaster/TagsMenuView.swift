@@ -10,7 +10,6 @@ import SwiftUI
 struct TagsMenuView: View {
     @EnvironmentObject var dataController: DataController
     @ObservedObject var issue: Issue
-    
     var body: some View {
         Menu {
             ForEach(issue.issueTags) { tag in

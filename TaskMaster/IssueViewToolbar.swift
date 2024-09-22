@@ -10,7 +10,6 @@ import SwiftUI
 struct IssueViewToolbar: View {
     @EnvironmentObject var dataController: DataController
     @ObservedObject var issue: Issue
-    
     var body: some View {
         Menu {
             Button {
@@ -25,9 +24,7 @@ struct IssueViewToolbar: View {
             } label: {
                 Label(issue.completed ? "タスクを未達成にする" : "タスクを達成する", systemImage: "bubble.left.and.exclamationmark.bubble.right")
             }
-            
             Divider()
-            
             Section("タグ") {
                 TagsMenuView(issue: issue)
             }

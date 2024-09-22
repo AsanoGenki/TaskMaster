@@ -10,7 +10,6 @@ import SwiftUI
 struct IssueView: View {
     @ObservedObject var issue: Issue
     @EnvironmentObject var dataController: DataController
-    
     var body: some View {
         Form {
             Section {
@@ -20,18 +19,14 @@ struct IssueView: View {
 
                     Text("**更新日:** \(issue.issueModificationDate.formatted(date: .long, time: .shortened))")
                         .foregroundStyle(.secondary)
-                    
                     Text("**ステータス:** \(issue.issueStatus)")
                         .foregroundStyle(.secondary)
-
                 }
-
                 Picker("優先度", selection: $issue.issuePriority) {
                     Text("低").tag(0)
                     Text("中").tag(1)
                     Text("高").tag(2)
                 }
-                
                TagsMenuView(issue: issue)
             }
             Section {

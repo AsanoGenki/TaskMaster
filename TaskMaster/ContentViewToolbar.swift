@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ContentViewToolbar: View {
     @EnvironmentObject var dataController: DataController
-    
     var body: some View {
         Menu {
             Button(dataController.filterEnabled ? "フィルターOFF" : "フィルターON") {
@@ -38,7 +37,6 @@ struct ContentViewToolbar: View {
                 Text("完了済み").tag(Status.closed)
             }
             .disabled(dataController.filterEnabled == false)
-            
             Picker("優先度", selection: $dataController.filterPriority) {
                 Text("すべて").tag(-1)
                 Text("低").tag(0)
@@ -49,7 +47,6 @@ struct ContentViewToolbar: View {
             Label("Filter", systemImage: "line.3.horizontal.decrease.circle")
                 .symbolVariant(dataController.filterEnabled ? .fill : .none)
         }
-        
         Button(action: dataController.newIssue) {
             Label("新しいタスク", systemImage: "square.and.pencil")
         }

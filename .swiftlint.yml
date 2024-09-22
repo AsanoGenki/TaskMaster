@@ -1,0 +1,17 @@
+# SwiftLintの対象外とする
+excluded:
+- Pods
+
+# 無効とするルール
+disabled_rules:
+- multiple_closures_with_trailing_closur
+- inclusive_language
+
+# デフォで無効とされたルールを有効とする
+opt_in_rules:
+- conditional_returns_on_newline
+
+# ルールをカスタム
+line_length: 450 # 1行あたりの文字数制限を450に変更
+identifier_name: # 変数名が1文字以上なら許可に変更
+  min_length: 1
