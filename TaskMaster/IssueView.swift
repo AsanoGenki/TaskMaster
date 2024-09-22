@@ -75,6 +75,25 @@ struct IssueView: View {
         .onReceive(issue.objectWillChange) { _ in
             dataController.queueSave()
         }
+        .onSubmit(dataController.save)
+        .toolbar {
+            Menu {
+                Button {
+                    UIPasteboard.general.string = issue.title
+                } label: {
+                    Label("タスクのタイトルをコピー", systemImage: "doc.on.doc")
+                }
+
+                Button {
+                    issue.completed.toggle()
+                    dataController.save()
+                } label: {
+                    Label(issue.completed ? "タスクを未達成にする" : "タスクを達成する", systemImage: "bubble.left.and.exclamationmark.bubble.right")
+                }
+            } label: {
+                Label("アクション", systemImage: "ellipsis.circle")
+            }
+        }
     }
 }
 

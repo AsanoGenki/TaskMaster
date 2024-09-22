@@ -45,6 +45,12 @@ struct SidebarView: View {
                                 } label: {
                                     Label("名前を変更", systemImage: "pencil")
                                 }
+                                
+                                Button(role: .destructive) {
+                                    delete(filter)
+                                } label: {
+                                    Label("削除", systemImage: "trash")
+                                }
                             }
                     }
                 }
@@ -77,6 +83,7 @@ struct SidebarView: View {
             TextField("新しい名前", text: $tagName)
         }
         .sheet(isPresented: $showingAwards, content: AwardsView.init)
+        .navigationTitle("フィルター")
         .navigationBarTitleDisplayMode(.inline)
     }
     
@@ -85,6 +92,12 @@ struct SidebarView: View {
             let item = tags[offset]
             dataController.delete(item)
         }
+    }
+    
+    func delete(_ filter: Filter) {
+        guard let tag = filter.tag else { return }
+        dataController.delete(tag)
+        dataController.save()
     }
     
     func rename(_ filter: Filter) {
