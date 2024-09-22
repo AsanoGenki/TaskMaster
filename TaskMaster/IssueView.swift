@@ -32,34 +32,7 @@ struct IssueView: View {
                     Text("高").tag(2)
                 }
                 
-                Menu {
-                    ForEach(issue.issueTags) { tag in
-                        Button {
-                            issue.removeFromTags(tag)
-                        } label: {
-                            Label(tag.tagName, systemImage: "checkmark")
-                        }
-                    }
-
-                    let otherTags = dataController.missingTags(from: issue)
-
-                    if otherTags.isEmpty == false {
-                        Divider()
-
-                        Section("タグを追加") {
-                            ForEach(otherTags) { tag in
-                                Button(tag.tagName) {
-                                    issue.addToTags(tag)
-                                }
-                            }
-                        }
-                    }
-                } label: {
-                    Text(issue.issueTagsList)
-                        .multilineTextAlignment(.leading)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .animation(nil, value: issue.issueTagsList)
-                }
+               TagsMenuView(issue: issue)
             }
             Section {
                 VStack(alignment: .leading) {
@@ -77,22 +50,7 @@ struct IssueView: View {
         }
         .onSubmit(dataController.save)
         .toolbar {
-            Menu {
-                Button {
-                    UIPasteboard.general.string = issue.title
-                } label: {
-                    Label("タスクのタイトルをコピー", systemImage: "doc.on.doc")
-                }
-
-                Button {
-                    issue.completed.toggle()
-                    dataController.save()
-                } label: {
-                    Label(issue.completed ? "タスクを未達成にする" : "タスクを達成する", systemImage: "bubble.left.and.exclamationmark.bubble.right")
-                }
-            } label: {
-                Label("アクション", systemImage: "ellipsis.circle")
-            }
+            IssueViewToolbar(issue: issue)
         }
     }
 }

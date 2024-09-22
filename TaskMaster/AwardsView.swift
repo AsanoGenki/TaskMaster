@@ -31,7 +31,7 @@ struct AwardsView: View {
                                 .scaledToFit()
                                 .padding()
                                 .frame(width: 100, height: 100)
-                                .foregroundColor(dataController.hasEarned(award: award) ? Color(award.color) : .secondary.opacity(0.5))
+                                .foregroundColor(color(for: award))
                         }
                     }
                 }
@@ -50,6 +50,10 @@ struct AwardsView: View {
         } else {
             return "未獲得"
         }
+    }
+    
+    func color(for award: Award) -> Color {
+        dataController.hasEarned(award: award) ? Color(award.color) : .secondary.opacity(0.5)
     }
 }
 

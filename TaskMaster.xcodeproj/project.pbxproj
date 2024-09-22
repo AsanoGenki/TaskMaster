@@ -21,6 +21,12 @@
 		4A69F8692C9FBFF2004B777E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A69F8682C9FBFF2004B777E /* ContentView.swift */; };
 		4A69F86B2C9FBFF4004B777E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A69F86A2C9FBFF4004B777E /* Assets.xcassets */; };
 		4A69F86E2C9FBFF4004B777E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A69F86D2C9FBFF4004B777E /* Preview Assets.xcassets */; };
+		4A77D2092CA045D2002CBDC1 /* SidebarViewToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A77D2082CA045D2002CBDC1 /* SidebarViewToolbar.swift */; };
+		4A77D20B2CA046EA002CBDC1 /* IssueViewToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A77D20A2CA046EA002CBDC1 /* IssueViewToolbar.swift */; };
+		4A77D20D2CA04742002CBDC1 /* ContentViewToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A77D20C2CA04742002CBDC1 /* ContentViewToolbar.swift */; };
+		4A77D20F2CA047B0002CBDC1 /* TagsMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A77D20E2CA047B0002CBDC1 /* TagsMenuView.swift */; };
+		4A77D2112CA04892002CBDC1 /* SmartFilterRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A77D2102CA04892002CBDC1 /* SmartFilterRow.swift */; };
+		4A77D2132CA04908002CBDC1 /* UserFilterRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A77D2122CA04908002CBDC1 /* UserFilterRow.swift */; };
 		4AFD2CB82C9FC3C90005B4F0 /* Main.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4AFD2CB62C9FC3C90005B4F0 /* Main.xcdatamodeld */; };
 		4AFD2CBA2C9FC5CE0005B4F0 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFD2CB92C9FC5CE0005B4F0 /* DataController.swift */; };
 		4AFD2CBE2C9FC8810005B4F0 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFD2CBD2C9FC8810005B4F0 /* SidebarView.swift */; };
@@ -44,6 +50,12 @@
 		4A69F8682C9FBFF2004B777E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4A69F86A2C9FBFF4004B777E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4A69F86D2C9FBFF4004B777E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4A77D2082CA045D2002CBDC1 /* SidebarViewToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewToolbar.swift; sourceTree = "<group>"; };
+		4A77D20A2CA046EA002CBDC1 /* IssueViewToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueViewToolbar.swift; sourceTree = "<group>"; };
+		4A77D20C2CA04742002CBDC1 /* ContentViewToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewToolbar.swift; sourceTree = "<group>"; };
+		4A77D20E2CA047B0002CBDC1 /* TagsMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsMenuView.swift; sourceTree = "<group>"; };
+		4A77D2102CA04892002CBDC1 /* SmartFilterRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFilterRow.swift; sourceTree = "<group>"; };
+		4A77D2122CA04908002CBDC1 /* UserFilterRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFilterRow.swift; sourceTree = "<group>"; };
 		4AFD2CB72C9FC3C90005B4F0 /* Main.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Main.xcdatamodel; sourceTree = "<group>"; };
 		4AFD2CB92C9FC5CE0005B4F0 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		4AFD2CBB2C9FC7650005B4F0 /* TaskMaster.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TaskMaster.entitlements; sourceTree = "<group>"; };
@@ -88,11 +100,17 @@
 				4AFD2CC12C9FC8E50005B4F0 /* Filter.swift */,
 				4AFD2CB92C9FC5CE0005B4F0 /* DataController.swift */,
 				4AFD2CBD2C9FC8810005B4F0 /* SidebarView.swift */,
+				4A77D2122CA04908002CBDC1 /* UserFilterRow.swift */,
+				4A77D2102CA04892002CBDC1 /* SmartFilterRow.swift */,
+				4A77D2082CA045D2002CBDC1 /* SidebarViewToolbar.swift */,
 				4A0206F02CA009710085B66A /* Bundle-Decodable.swift */,
 				4A69F8682C9FBFF2004B777E /* ContentView.swift */,
+				4A77D20C2CA04742002CBDC1 /* ContentViewToolbar.swift */,
 				4A0206EA2C9FE6AF0085B66A /* IssueRow.swift */,
 				4AFD2CBF2C9FC8940005B4F0 /* DetailView.swift */,
 				4A0206EE2C9FE9D30085B66A /* IssueView.swift */,
+				4A77D20E2CA047B0002CBDC1 /* TagsMenuView.swift */,
+				4A77D20A2CA046EA002CBDC1 /* IssueViewToolbar.swift */,
 				4A0206EC2C9FE95C0085B66A /* NoIssueView.swift */,
 				4A0206F62CA00A4C0085B66A /* Award.swift */,
 				4A0206F82CA00AB50085B66A /* AwardsView.swift */,
@@ -189,7 +207,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AFD2CC22C9FC8E50005B4F0 /* Filter.swift in Sources */,
+				4A77D20F2CA047B0002CBDC1 /* TagsMenuView.swift in Sources */,
 				4A0206F72CA00A4C0085B66A /* Award.swift in Sources */,
+				4A77D20B2CA046EA002CBDC1 /* IssueViewToolbar.swift in Sources */,
+				4A77D2112CA04892002CBDC1 /* SmartFilterRow.swift in Sources */,
 				4A0206F92CA00AB50085B66A /* AwardsView.swift in Sources */,
 				4A0206E72C9FE3D60085B66A /* Tag-CoreDataHelpers.swift in Sources */,
 				4A0206ED2C9FE95C0085B66A /* NoIssueView.swift in Sources */,
@@ -197,9 +218,12 @@
 				4A0206F12CA009710085B66A /* Bundle-Decodable.swift in Sources */,
 				4AFD2CC02C9FC8940005B4F0 /* DetailView.swift in Sources */,
 				4AFD2CBA2C9FC5CE0005B4F0 /* DataController.swift in Sources */,
+				4A77D20D2CA04742002CBDC1 /* ContentViewToolbar.swift in Sources */,
 				4AFD2CBE2C9FC8810005B4F0 /* SidebarView.swift in Sources */,
 				4A69F8692C9FBFF2004B777E /* ContentView.swift in Sources */,
+				4A77D2092CA045D2002CBDC1 /* SidebarViewToolbar.swift in Sources */,
 				4A0206E52C9FE2DD0085B66A /* Issue-CoreDataHelper.swift in Sources */,
+				4A77D2132CA04908002CBDC1 /* UserFilterRow.swift in Sources */,
 				4A0206EB2C9FE6AF0085B66A /* IssueRow.swift in Sources */,
 				4A0206EF2C9FE9D30085B66A /* IssueView.swift in Sources */,
 				4A69F8672C9FBFF2004B777E /* TaskMasterApp.swift in Sources */,
