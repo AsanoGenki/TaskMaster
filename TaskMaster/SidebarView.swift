@@ -17,6 +17,8 @@ struct SidebarView: View {
     @State private var renamingTag = false
     @State private var tagName = ""
     
+    @State private var showingAwards = false
+    
     var tagFilters: [Filter] {
         tags.map { tag in
             Filter(id: tag.tagID, name: tag.tagName, icon: "tag", tag: tag)
@@ -50,6 +52,16 @@ struct SidebarView: View {
             }
         }
         .toolbar {
+            Button(action: dataController.newTag) {
+                Label("タグを追加", systemImage: "plus")
+            }
+            
+            Button {
+                showingAwards.toggle()
+            } label: {
+                Label("称号の表示", systemImage: "rosette")
+            }
+            
             #if DEBUG
             Button {
                 dataController.deleteAll()
@@ -58,16 +70,13 @@ struct SidebarView: View {
                 Label("サンプルを追加", systemImage: "flame")
             }
             #endif
-            
-            Button(action: dataController.newTag) {
-                Label("タグを追加", systemImage: "plus")
-            }
         }
         .alert("タグの名前を変更", isPresented: $renamingTag) {
             Button("OK", action: completeRename)
             Button("キャンセル", role: .cancel) { }
             TextField("新しい名前", text: $tagName)
         }
+        .sheet(isPresented: $showingAwards, content: AwardsView.init)
         .navigationBarTitleDisplayMode(.inline)
     }
     

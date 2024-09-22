@@ -26,7 +26,7 @@ struct IssueView: View {
 
                 }
 
-                Picker("優先度", selection: $issue.priority) {
+                Picker("優先度", selection: $issue.issuePriority) {
                     Text("低").tag(0)
                     Text("中").tag(1)
                     Text("高").tag(2)

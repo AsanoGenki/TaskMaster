@@ -31,6 +31,11 @@ extension Issue {
         return result.sorted()
     }
     
+    var issuePriority: Int {
+            get { Int(priority) }
+            set { priority = Int16(newValue) }
+        }
+    
     var issueTagsList: String {
         guard let tags else { return "タグなし" }
 
