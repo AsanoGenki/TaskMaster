@@ -17,7 +17,6 @@ struct ContentView: View {
             .onDelete(perform: delete)
         }
         .navigationTitle("タスク")
-        .navigationBarTitleDisplayMode(.inline)
         .searchable(text: $dataController.filterText, tokens: $dataController.filterTokens, suggestedTokens: .constant(dataController.suggestedFilterTokens), prompt: "検索") { tag in
             Text(tag.tagName)
         }

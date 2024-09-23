@@ -17,7 +17,6 @@ struct IssueViewToolbar: View {
             } label: {
                 Label("タスクのタイトルをコピー", systemImage: "doc.on.doc")
             }
-
             Button {
                 issue.completed.toggle()
                 dataController.save()

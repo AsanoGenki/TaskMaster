@@ -38,7 +38,6 @@ struct SidebarView: View {
             TextField("新しい名前", text: $tagName)
         }
         .navigationTitle("フィルター")
-        .navigationBarTitleDisplayMode(.inline)
     }
     func delete(_ offsets: IndexSet) {
         for offset in offsets {

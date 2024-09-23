@@ -16,19 +16,16 @@ struct IssueRow: View {
                 Image(systemName: "exclamationmark.circle")
                     .imageScale(.large)
                     .opacity(issue.priority == 2 ? 1 : 0)
-
+                    .accessibilityIdentifier(issue.priority == 2 ? "\(issue.issueTitle) 高い優先度" : "")
                 VStack(alignment: .leading) {
                     Text(issue.issueTitle)
                         .font(.headline)
                         .lineLimit(1)
-
                     Text(issue.issueTagsList)
                         .font(.subheadline)
                         .lineLimit(1)
                 }
-
                 Spacer()
-
                 VStack(alignment: .trailing) {
                     Text(issue.issueCreationDate.formatted(date: .numeric, time: .omitted))
                         .font(.subheadline)
@@ -41,6 +38,7 @@ struct IssueRow: View {
                 .foregroundStyle(.secondary)
             }
         }
+        .accessibilityIdentifier(issue.issueTitle)
     }
 }
 

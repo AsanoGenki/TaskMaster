@@ -41,6 +41,17 @@
                ReferencedContainer = "container:TaskMaster.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4AD8BBF12CA13C0D00EC9261"
+               BuildableName = "TaskMasterUITests.xctest"
+               BlueprintName = "TaskMasterUITests"
+               ReferencedContainer = "container:TaskMaster.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
