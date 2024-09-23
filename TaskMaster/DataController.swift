@@ -49,11 +49,19 @@ class DataController: ObservableObject {
 
         return (try? container.viewContext.fetch(request).sorted()) ?? []
     }
+    static let model: NSManagedObjectModel = {
+        guard let url = Bundle.main.url(forResource: "Main", withExtension: "momd") else {
+            fatalError("モデルファイルが見つかりませんでした。")
+        }
+        guard let managedObjectModel = NSManagedObjectModel(contentsOf: url) else {
+            fatalError("モデルファイルが見つかりませんでした。")
+        }
+        return managedObjectModel
+    }()
     /// DataControllerをメモリ内 (テストやプレビューなどの一時的な使用)、または永続的なストレージ (通常のアプリ実行での使用) で初期化する。
     /// - Parameter inMemory: このデータを一時メモリに保存するかどうか。
     init(inMemory: Bool = false) {
-        container = NSPersistentCloudKitContainer(name: "Main")
-
+        container = NSPersistentCloudKitContainer(name: "Main", managedObjectModel: Self.model)
         // テストとプレビューの目的で、/dev/nullに書き込むことで一時的なメモリ内データベースを作成する。
         // アプリの実行が終了するとデータが破棄される。
         if inMemory {
@@ -68,7 +76,7 @@ class DataController: ObservableObject {
         NotificationCenter.default.addObserver(forName: .NSPersistentStoreRemoteChange, object: container.persistentStoreCoordinator, queue: .main, using: remoteStoreChanged)
         container.loadPersistentStores { _, error in
             if let error {
-                fatalError("Fatal error loading store: \(error.localizedDescription)")
+                fatalError("エラーが発生しました: \(error.localizedDescription)")
             }
         }
     }
