@@ -51,7 +51,6 @@ extension Issue {
     static var example: Issue {
         let controller = DataController(inMemory: true)
         let viewContext = controller.container.viewContext
-
         let issue = Issue(context: viewContext)
         issue.title = "テストタスク"
         issue.content = "これはテスト用のタスクです。"
