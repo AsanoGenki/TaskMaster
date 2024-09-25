@@ -10,6 +10,8 @@ import SwiftUI
 struct IssueView: View {
     @ObservedObject var issue: Issue
     @EnvironmentObject var dataController: DataController
+    @State private var showingNotificationsError = false
+    @Environment(\.openURL) var openURL
     var body: some View {
         Form {
             Section {
@@ -38,6 +40,16 @@ struct IssueView: View {
                     TextField("説明", text: $issue.issueContent, prompt: Text("タスクの説明をここに記入..."), axis: .vertical)
                 }
             }
+            Section("通知") {
+                Toggle("通知", isOn: $issue.reminderEnabled.animation())
+                if issue.reminderEnabled {
+                   DatePicker(
+                       "通知時刻",
+                       selection: $issue.issueReminderTime,
+                       displayedComponents: .hourAndMinute
+                   )
+                }
+            }
         }
         .disabled(issue.isDeleted)
         .onReceive(issue.objectWillChange) { _ in
@@ -46,6 +58,36 @@ struct IssueView: View {
         .onSubmit(dataController.save)
         .toolbar {
             IssueViewToolbar(issue: issue)
+        }
+        .alert("おっと！", isPresented: $showingNotificationsError) {
+            Button("設定で確認する", action: showAppSettings)
+            Button("キャンセル", role: .cancel) { }
+        } message: {
+            Text("通知の設定中に問題が発生しました。通知が有効になっていることを確認してください。")
+        }
+        .onChange(of: issue.reminderEnabled) {
+            updateReminder()
+        }
+        .onChange(of: issue.reminderTime) {
+            updateReminder()
+        }
+    }
+    func showAppSettings() {
+        guard let settingsURL = URL(string: UIApplication.openNotificationSettingsURLString) else {
+            return
+        }
+        openURL(settingsURL)
+    }
+    func updateReminder() {
+        dataController.removeReminders(for: issue)
+        Task { @MainActor in
+            if issue.reminderEnabled {
+                let success = await dataController.addReminder(for: issue)
+                if success == false {
+                    issue.reminderEnabled = false
+                    showingNotificationsError = true
+                }
+            }
         }
     }
 }
