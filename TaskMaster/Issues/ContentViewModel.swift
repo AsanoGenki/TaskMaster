@@ -11,6 +11,9 @@ extension ContentView {
     @dynamicMemberLookup
     class ViewModel: ObservableObject {
         var dataController: DataController
+        var shouldRequestReview: Bool {
+            dataController.count(for: Tag.fetchRequest()) >= 5
+        }
         init(dataController: DataController) {
             self.dataController = dataController
         }

@@ -34,6 +34,9 @@
 		4A77D2112CA04892002CBDC1 /* SmartFilterRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A77D2102CA04892002CBDC1 /* SmartFilterRow.swift */; };
 		4A77D2132CA04908002CBDC1 /* UserFilterRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A77D2122CA04908002CBDC1 /* UserFilterRow.swift */; };
 		4AB23FEB2CA43D52003C113E /* DataController-Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB23FEA2CA43D52003C113E /* DataController-Notifications.swift */; };
+		4AB23FED2CA440E7003C113E /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 4AB23FEC2CA440E7003C113E /* Configuration.storekit */; };
+		4AB23FEF2CA441D4003C113E /* DataController-StoreKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB23FEE2CA441D4003C113E /* DataController-StoreKit.swift */; };
+		4AB23FF22CA443E4003C113E /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB23FF12CA443E4003C113E /* StoreView.swift */; };
 		4AD8BBF52CA13C0D00EC9261 /* TaskMasterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD8BBF42CA13C0D00EC9261 /* TaskMasterUITests.swift */; };
 		4AD8BBF72CA13C0D00EC9261 /* TaskMasterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD8BBF62CA13C0D00EC9261 /* TaskMasterUITestsLaunchTests.swift */; };
 		4ADDE5E52CA12C08005D9E12 /* TagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADDE5E42CA12C08005D9E12 /* TagTests.swift */; };
@@ -98,6 +101,9 @@
 		4A77D2102CA04892002CBDC1 /* SmartFilterRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFilterRow.swift; sourceTree = "<group>"; };
 		4A77D2122CA04908002CBDC1 /* UserFilterRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFilterRow.swift; sourceTree = "<group>"; };
 		4AB23FEA2CA43D52003C113E /* DataController-Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataController-Notifications.swift"; sourceTree = "<group>"; };
+		4AB23FEC2CA440E7003C113E /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
+		4AB23FEE2CA441D4003C113E /* DataController-StoreKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataController-StoreKit.swift"; sourceTree = "<group>"; };
+		4AB23FF12CA443E4003C113E /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
 		4AD8BBF22CA13C0D00EC9261 /* TaskMasterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaskMasterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AD8BBF42CA13C0D00EC9261 /* TaskMasterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskMasterUITests.swift; sourceTree = "<group>"; };
 		4AD8BBF62CA13C0D00EC9261 /* TaskMasterUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskMasterUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -184,6 +190,7 @@
 		4A69F8652C9FBFF2004B777E /* TaskMaster */ = {
 			isa = PBXGroup;
 			children = (
+				4AB23FF02CA443D9003C113E /* Store */,
 				4A77D21C2CA05BD3002CBDC1 /* Filters */,
 				4A77D21D2CA05BF2002CBDC1 /* Issues */,
 				4A77D21E2CA05C0D002CBDC1 /* Editing */,
@@ -193,6 +200,7 @@
 				4A69F8662C9FBFF2004B777E /* TaskMasterApp.swift */,
 				4AFD2CB92C9FC5CE0005B4F0 /* DataController.swift */,
 				4AB23FEA2CA43D52003C113E /* DataController-Notifications.swift */,
+				4AB23FEE2CA441D4003C113E /* DataController-StoreKit.swift */,
 				4A0206F42CA00A300085B66A /* Colors.xcassets */,
 				4A69F86A2C9FBFF4004B777E /* Assets.xcassets */,
 				4A69F86C2C9FBFF4004B777E /* Preview Content */,
@@ -223,6 +231,7 @@
 			children = (
 				4AFD2CBB2C9FC7650005B4F0 /* TaskMaster.entitlements */,
 				4AFD2CBC2C9FC76F0005B4F0 /* Info.plist */,
+				4AB23FEC2CA440E7003C113E /* Configuration.storekit */,
 				4AFD2CB62C9FC3C90005B4F0 /* Main.xcdatamodeld */,
 			);
 			path = Configuration;
@@ -273,6 +282,14 @@
 				4A0206F22CA00A110085B66A /* Awards.json */,
 			);
 			path = Awards;
+			sourceTree = "<group>";
+		};
+		4AB23FF02CA443D9003C113E /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				4AB23FF12CA443E4003C113E /* StoreView.swift */,
+			);
+			path = Store;
 			sourceTree = "<group>";
 		};
 		4AD8BBF32CA13C0D00EC9261 /* TaskMasterUITests */ = {
@@ -426,6 +443,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A69F86E2C9FBFF4004B777E /* Preview Assets.xcassets in Resources */,
+				4AB23FED2CA440E7003C113E /* Configuration.storekit in Resources */,
 				4A0206F52CA00A310085B66A /* Colors.xcassets in Resources */,
 				4A0206F32CA00A110085B66A /* Awards.json in Resources */,
 				4A69F86B2C9FBFF4004B777E /* Assets.xcassets in Resources */,
@@ -508,6 +526,7 @@
 				4A77D20B2CA046EA002CBDC1 /* IssueViewToolbar.swift in Sources */,
 				4A77D2112CA04892002CBDC1 /* SmartFilterRow.swift in Sources */,
 				4A0206F92CA00AB50085B66A /* AwardsView.swift in Sources */,
+				4AB23FEF2CA441D4003C113E /* DataController-StoreKit.swift in Sources */,
 				4AB23FEB2CA43D52003C113E /* DataController-Notifications.swift in Sources */,
 				4A0206E72C9FE3D60085B66A /* Tag-CoreDataHelpers.swift in Sources */,
 				4A0206ED2C9FE95C0085B66A /* NoIssueView.swift in Sources */,
@@ -526,6 +545,7 @@
 				4A0206EB2C9FE6AF0085B66A /* IssueRow.swift in Sources */,
 				4A0206EF2C9FE9D30085B66A /* IssueView.swift in Sources */,
 				4A69F8672C9FBFF2004B777E /* TaskMasterApp.swift in Sources */,
+				4AB23FF22CA443E4003C113E /* StoreView.swift in Sources */,
 				4A3108D92CA3A5BF00992817 /* IssueRowViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

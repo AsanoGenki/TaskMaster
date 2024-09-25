@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import StoreKit
 import SwiftUI
 
 enum SortType: String {
@@ -32,7 +33,11 @@ class DataController: ObservableObject {
     @Published var filterStatus = Status.all
     @Published var sortType = SortType.dateCreated
     @Published var sortNewestFirst = true
+    private var storeTask: Task<Void, Never>?
     private var saveTask: Task<Void, Error>?
+    let defaults: UserDefaults
+    /// Storekitに登録した製品
+    @Published var products = [Product]()
     static var preview: DataController = {
         let dataController = DataController(inMemory: true)
         dataController.createSampleData()
@@ -63,8 +68,12 @@ class DataController: ObservableObject {
     }()
     /// DataControllerをメモリ内 (テストやプレビューなどの一時的な使用)、または永続的なストレージ (通常のアプリ実行での使用) で初期化する。
     /// - Parameter inMemory: このデータを一時メモリに保存するかどうか。
-    init(inMemory: Bool = false) {
+    init(inMemory: Bool = false, defaults: UserDefaults = .standard) {
+        self.defaults = defaults
         container = NSPersistentCloudKitContainer(name: "Main", managedObjectModel: Self.model)
+        storeTask = Task {
+            await monitorTransactions()
+        }
         // テストとプレビューの目的で、/dev/nullに書き込むことで一時的なメモリ内データベースを作成する。
         // アプリの実行が終了するとデータが破棄される。
         if inMemory {
@@ -220,11 +229,20 @@ class DataController: ObservableObject {
         let allIssues = (try? container.viewContext.fetch(request)) ?? []
         return allIssues
     }
-    func newTag() {
+    func newTag() -> Bool {
+        var shouldCreate = fullVersionUnlocked
+        if shouldCreate == false {
+            // 現在タグがいくつあるか確認する
+            shouldCreate = count(for: Tag.fetchRequest()) < 3
+        }
+        guard shouldCreate else {
+            return false
+        }
         let tag = Tag(context: container.viewContext)
         tag.id = UUID()
         tag.name = "新しいタグ"
         save()
+        return true
     }
     func newIssue() {
         let issue = Issue(context: container.viewContext)
@@ -260,7 +278,10 @@ class DataController: ObservableObject {
             let fetchRequest = Tag.fetchRequest()
             let awardCount = count(for: fetchRequest)
             return awardCount >= award.value
-
+            
+        case "unlock":
+            return fullVersionUnlocked
+            
         default:
             // fatalError("Unknown award criterion: \(award.criterion)")
             return false
