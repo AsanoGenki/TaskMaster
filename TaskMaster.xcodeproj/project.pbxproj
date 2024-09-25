@@ -18,6 +18,9 @@
 		4A0206F52CA00A310085B66A /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A0206F42CA00A300085B66A /* Colors.xcassets */; };
 		4A0206F72CA00A4C0085B66A /* Award.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0206F62CA00A4C0085B66A /* Award.swift */; };
 		4A0206F92CA00AB50085B66A /* AwardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0206F82CA00AB50085B66A /* AwardsView.swift */; };
+		4A3108D52CA3A1A700992817 /* SidebarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3108D42CA3A1A600992817 /* SidebarViewModel.swift */; };
+		4A3108D72CA3A50C00992817 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3108D62CA3A50C00992817 /* ContentViewModel.swift */; };
+		4A3108D92CA3A5BF00992817 /* IssueRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3108D82CA3A5BF00992817 /* IssueRowViewModel.swift */; };
 		4A4EE1992CA1043E00821FB0 /* TaskMasterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4EE1982CA1043E00821FB0 /* TaskMasterTests.swift */; };
 		4A4EE1A02CA1075300821FB0 /* AssetTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4EE19F2CA1075300821FB0 /* AssetTest.swift */; };
 		4A69F8672C9FBFF2004B777E /* TaskMasterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A69F8662C9FBFF2004B777E /* TaskMasterApp.swift */; };
@@ -76,6 +79,9 @@
 		4A0206F42CA00A300085B66A /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		4A0206F62CA00A4C0085B66A /* Award.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Award.swift; sourceTree = "<group>"; };
 		4A0206F82CA00AB50085B66A /* AwardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwardsView.swift; sourceTree = "<group>"; };
+		4A3108D42CA3A1A600992817 /* SidebarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewModel.swift; sourceTree = "<group>"; };
+		4A3108D62CA3A50C00992817 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		4A3108D82CA3A5BF00992817 /* IssueRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueRowViewModel.swift; sourceTree = "<group>"; };
 		4A4EE1962CA1043E00821FB0 /* TaskMasterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaskMasterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A4EE1982CA1043E00821FB0 /* TaskMasterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskMasterTests.swift; sourceTree = "<group>"; };
 		4A4EE19F2CA1075300821FB0 /* AssetTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetTest.swift; sourceTree = "<group>"; };
@@ -224,6 +230,7 @@
 			children = (
 				4AFD2CC12C9FC8E50005B4F0 /* Filter.swift */,
 				4AFD2CBD2C9FC8810005B4F0 /* SidebarView.swift */,
+				4A3108D42CA3A1A600992817 /* SidebarViewModel.swift */,
 				4A77D2082CA045D2002CBDC1 /* SidebarViewToolbar.swift */,
 				4A77D2102CA04892002CBDC1 /* SmartFilterRow.swift */,
 				4A77D2122CA04908002CBDC1 /* UserFilterRow.swift */,
@@ -235,8 +242,10 @@
 			isa = PBXGroup;
 			children = (
 				4A69F8682C9FBFF2004B777E /* ContentView.swift */,
+				4A3108D62CA3A50C00992817 /* ContentViewModel.swift */,
 				4A77D20C2CA04742002CBDC1 /* ContentViewToolbar.swift */,
 				4A0206EA2C9FE6AF0085B66A /* IssueRow.swift */,
+				4A3108D82CA3A5BF00992817 /* IssueRowViewModel.swift */,
 			);
 			path = Issues;
 			sourceTree = "<group>";
@@ -501,6 +510,8 @@
 				4AFD2CB82C9FC3C90005B4F0 /* Main.xcdatamodeld in Sources */,
 				4A0206F12CA009710085B66A /* Bundle-Decodable.swift in Sources */,
 				4AFD2CC02C9FC8940005B4F0 /* DetailView.swift in Sources */,
+				4A3108D52CA3A1A700992817 /* SidebarViewModel.swift in Sources */,
+				4A3108D72CA3A50C00992817 /* ContentViewModel.swift in Sources */,
 				4AFD2CBA2C9FC5CE0005B4F0 /* DataController.swift in Sources */,
 				4A77D20D2CA04742002CBDC1 /* ContentViewToolbar.swift in Sources */,
 				4AFD2CBE2C9FC8810005B4F0 /* SidebarView.swift in Sources */,
@@ -511,6 +522,7 @@
 				4A0206EB2C9FE6AF0085B66A /* IssueRow.swift in Sources */,
 				4A0206EF2C9FE9D30085B66A /* IssueView.swift in Sources */,
 				4A69F8672C9FBFF2004B777E /* TaskMasterApp.swift in Sources */,
+				4A3108D92CA3A5BF00992817 /* IssueRowViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

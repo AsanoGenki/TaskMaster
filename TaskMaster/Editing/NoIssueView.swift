@@ -9,18 +9,16 @@ import SwiftUI
 
 struct NoIssueView: View {
     @EnvironmentObject var dataController: DataController
-
     var body: some View {
-        Text("選択した未達成のタスク")
+        Text("タスクがありません")
             .font(.title)
             .foregroundStyle(.secondary)
-
-        Button("新しいタスク") {
-            // make a new issue
-        }
+        Button("新しいタスク", action: dataController.newIssue)
     }
 }
 
 #Preview {
     NoIssueView()
+        .environmentObject(DataController(inMemory: true))
+
 }

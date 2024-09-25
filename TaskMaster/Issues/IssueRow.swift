@@ -9,28 +9,27 @@ import SwiftUI
 
 struct IssueRow: View {
     @EnvironmentObject var dataController: DataController
-    @ObservedObject var issue: Issue
+    @StateObject var viewModel: ViewModel
     var body: some View {
-        NavigationLink(value: issue) {
+        NavigationLink(value: viewModel.issue) {
             HStack {
                 Image(systemName: "exclamationmark.circle")
                     .imageScale(.large)
-                    .opacity(issue.priority == 2 ? 1 : 0)
-                    .accessibilityIdentifier(issue.priority == 2 ? "\(issue.issueTitle) 高い優先度" : "")
+                    .opacity(viewModel.iconOpacity)
+                    .accessibilityIdentifier(viewModel.iconIdentifier)
                 VStack(alignment: .leading) {
-                    Text(issue.issueTitle)
+                    Text(viewModel.issueTitle)
                         .font(.headline)
                         .lineLimit(1)
-                    Text(issue.issueTagsList)
+                    Text(viewModel.issueTagsList)
                         .font(.subheadline)
                         .lineLimit(1)
                 }
                 Spacer()
                 VStack(alignment: .trailing) {
-                    Text(issue.issueCreationDate.formatted(date: .numeric, time: .omitted))
+                    Text(viewModel.creationDate)
                         .font(.subheadline)
-
-                    if issue.completed {
+                    if viewModel.completed {
                         Text("完了済み")
                             .font(.body.smallCaps())
                     }
@@ -38,7 +37,11 @@ struct IssueRow: View {
                 .foregroundStyle(.secondary)
             }
         }
-        .accessibilityIdentifier(issue.issueTitle)
+        .accessibilityIdentifier(viewModel.issueTitle)
+    }
+    init(issue: Issue) {
+        let viewModel = ViewModel(issue: issue)
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
 }
 
