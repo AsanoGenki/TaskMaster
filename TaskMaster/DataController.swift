@@ -8,6 +8,7 @@
 import CoreData
 import StoreKit
 import SwiftUI
+import WidgetKit
 
 enum SortType: String {
     case dateCreated = "creationDate"
@@ -77,7 +78,12 @@ class DataController: ObservableObject {
         // テストとプレビューの目的で、/dev/nullに書き込むことで一時的なメモリ内データベースを作成する。
         // アプリの実行が終了するとデータが破棄される。
         if inMemory {
-            container.persistentStoreDescriptions.first?.url = URL(filePath: "/dev/null")
+            container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
+        } else {
+            let groupID = "group.com.TaskMaster.TaskMasterWidget"
+            if let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupID) {
+                container.persistentStoreDescriptions.first?.url = url.appending(path: "Main.sqlite")
+            }
         }
 
         container.viewContext.automaticallyMergesChangesFromParent = true
@@ -85,7 +91,16 @@ class DataController: ObservableObject {
         
         // すべての変更について iCloudを監視し、リモートの変更が発生したときにローカルUIが確実に同期されるようにする。
         container.persistentStoreDescriptions.first?.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
-        NotificationCenter.default.addObserver(forName: .NSPersistentStoreRemoteChange, object: container.persistentStoreCoordinator, queue: .main, using: remoteStoreChanged)
+        container.persistentStoreDescriptions.first?.setOption(
+            true as NSNumber,
+            forKey: NSPersistentHistoryTrackingKey
+        )
+        NotificationCenter.default.addObserver(
+            forName: .NSPersistentStoreRemoteChange,
+            object: container.persistentStoreCoordinator,
+            queue: .main,
+            using: remoteStoreChanged
+        )
         container.loadPersistentStores { [weak self] _, error in
             if let error {
                 fatalError("エラーが発生しました: \(error.localizedDescription)")
@@ -134,7 +149,7 @@ class DataController: ObservableObject {
     }
     func save() {
         saveTask?.cancel()
-
+        WidgetCenter.shared.reloadAllTimelines()
         if container.viewContext.hasChanges {
             try? container.viewContext.save()
         }
@@ -260,33 +275,7 @@ class DataController: ObservableObject {
     }
     func count<T>(for fetchRequest: NSFetchRequest<T>) -> Int {
         (try? container.viewContext.count(for: fetchRequest)) ?? 0
-    }
-    func hasEarned(award: Award) -> Bool {
-        switch award.criterion {
-        case "issues":
-            let fetchRequest = Issue.fetchRequest()
-            let awardCount = count(for: fetchRequest)
-            return awardCount >= award.value
-
-        case "closed":
-            let fetchRequest = Issue.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "completed = true")
-            let awardCount = count(for: fetchRequest)
-            return awardCount >= award.value
-
-        case "tags":
-            let fetchRequest = Tag.fetchRequest()
-            let awardCount = count(for: fetchRequest)
-            return awardCount >= award.value
-            
-        case "unlock":
-            return fullVersionUnlocked
-            
-        default:
-            // fatalError("Unknown award criterion: \(award.criterion)")
-            return false
-        }
-    }
+    }    
     func issue(with uniqueIdentifier: String) -> Issue? {
         guard let url = URL(string: uniqueIdentifier) else {
             return nil
@@ -297,5 +286,19 @@ class DataController: ObservableObject {
         }
 
         return try? container.viewContext.existingObject(with: id) as? Issue
+    }
+    func fetchRequestForTopIssues(count: Int) -> NSFetchRequest<Issue> {
+        let request = Issue.fetchRequest()
+        request.predicate = NSPredicate(format: "completed = false")
+
+        request.sortDescriptors = [
+            NSSortDescriptor(keyPath: \Issue.priority, ascending: false)
+        ]
+
+        request.fetchLimit = count
+        return request
+    }
+    func results<T: NSManagedObject>(for fetchRequest: NSFetchRequest<T>) -> [T] {
+        return (try? container.viewContext.fetch(fetchRequest)) ?? []
     }
 }
