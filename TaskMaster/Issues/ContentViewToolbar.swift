@@ -16,15 +16,19 @@ struct ContentViewToolbar: View {
             }
             Divider()
             Menu("並び順") {
-                Picker("Sort By", selection: $dataController.sortType) {
+                Picker("作成日・更新日順", selection: $dataController.sortType) {
                     Text("作成日順").tag(SortType.dateCreated)
                     Text("更新日順").tag(SortType.dateModified)
                 }
+                .pickerStyle(.inline)
+                .labelsHidden()
                 Divider()
-                Picker("Sort Order", selection: $dataController.sortNewestFirst) {
+                Picker("新しい・古い順", selection: $dataController.sortNewestFirst) {
                     Text("新しい順").tag(true)
                     Text("古い順").tag(false)
                 }
+                .pickerStyle(.inline)
+                .labelsHidden()
             }
             Picker("ステータス", selection: $dataController.filterStatus) {
                 Text("すべて").tag(Status.all)
@@ -41,10 +45,12 @@ struct ContentViewToolbar: View {
         } label: {
             Label("並び替え", systemImage: "line.3.horizontal.decrease.circle")
                 .symbolVariant(dataController.filterEnabled ? .fill : .none)
+                .help("並び替え")
         }
         Button(action: dataController.newIssue) {
             Label("新しいタスク", systemImage: "square.and.pencil")
         }
+        .help("新しいタスク")
     }
 }
 

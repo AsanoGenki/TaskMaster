@@ -14,11 +14,7 @@ struct IssueViewToolbar: View {
     @State private var engine = try? CHHapticEngine()
     var body: some View {
         Menu {
-            Button {
-                UIPasteboard.general.string = issue.title
-            } label: {
-                Label("タスクのタイトルをコピー", systemImage: "doc.on.doc")
-            }
+            Button("タスクのタイトルをコピー", systemImage: "doc.on.doc", action: copyToClipboard)
             Button(action: toggleCompleted) {
                 Label(issue.completed ? "タスクを未達成にする" : "タスクを達成する", systemImage: "bubble.left.and.exclamationmark.bubble.right")
             }
@@ -63,6 +59,14 @@ struct IssueViewToolbar: View {
                 fatalError("振動の生成に失敗しました: \(error.localizedDescription)")
             }
         }
+    }
+    func copyToClipboard() {
+        #if os(iOS)
+        UIPasteboard.general.string = issue.title
+        #else
+        NSPasteboard.general.prepareForNewContents()
+        NSPasteboard.general.setString(issue.issueTitle, forType: .string)
+        #endif
     }
 }
 

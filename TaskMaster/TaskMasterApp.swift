@@ -10,7 +10,9 @@ import SwiftUI
 
 @main
 struct TaskMasterApp: App {
+    #if os(iOS)
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    #endif
     @StateObject var dataController = DataController()
     @Environment(\.scenePhase) var scenePhase
     var body: some Scene {

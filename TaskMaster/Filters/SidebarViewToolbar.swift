@@ -16,12 +16,14 @@ struct SidebarViewToolbar: View {
             Label("タグを追加", systemImage: "plus")
         }
         .sheet(isPresented: $showingStore, content: StoreView.init)
+        .help("タグを追加")
         Button {
             showingAwards.toggle()
         } label: {
             Label("称号の表示", systemImage: "rosette")
         }
         .sheet(isPresented: $showingAwards, content: AwardsView.init)
+        .help("称号の表示")
         #if DEBUG
         Button {
             dataController.deleteAll()
